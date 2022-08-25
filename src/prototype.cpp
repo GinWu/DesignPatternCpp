@@ -35,12 +35,18 @@ public:
         return _id;
     }
 
+    Circle(const Circle& c) {
+        cout << "Circle copy construct!" << endl;
+        this->_type = c._type;
+        this->_id = c._id;
+    }
+
     void draw() override {
         cout << "this is id" << _id << " draw a " << _type << endl;
     }
 
     Shape* clone() override {
-        return new Circle;
+        return new Circle(*this);
     }
 
 };
@@ -51,6 +57,12 @@ public:
         _type = "Square";
     }
 
+    Square(const Square& s) {
+        cout << "Square copy construct!" << endl;
+        this->_type = s._type;
+        this->_id = s._id;
+    }
+
     string getType() override {
         return _type;
     }
@@ -64,7 +76,7 @@ public:
     }
 
     Shape* clone() override {
-        return new Square;
+        return new Square(*this);
     }
 
 };
@@ -75,6 +87,12 @@ public:
         _type = "Rectangle";
     }
 
+    Rectangle(const Rectangle& r) {
+        cout << "Rectangle copy construct!" << endl;
+        this->_type = r._type;
+        this->_id = r._id;
+    }
+
     string getType() override {
         return _type;
     }
@@ -88,7 +106,7 @@ public:
     }
 
     Shape* clone() override {
-        return new Rectangle;
+        return new Rectangle(*this);
     }
 };
 
