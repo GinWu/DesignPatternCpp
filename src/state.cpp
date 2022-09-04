@@ -39,20 +39,19 @@ private:
 class StartState: public State {
 public:
     void doAction(Context* context) override {
-        cout << "This is StartState. " << endl;
+        cout << "This is StartState." << endl;
         context->setState(this);
     }
 
-    string toString() override {
+    string toString() {
         return "Start State.";
     }
-
 };
 
 class StopState: public State {
 public:
     void doAction(Context* context) override {
-        cout << "This is StopState. " << endl;
+        cout << "This is StopState." << endl;
         context->setState(this);
     }
 
@@ -62,14 +61,18 @@ public:
 };
 
 int main() {
-    Context context;
-    StartState startState;
-    startState.doAction(&context);
-    cout << context.getState()->toString() << endl;
+    
+    StartState* startState = new StartState;
+    Context* context = new Context;
+    startState->doAction(context);
+    cout << context->getState()->toString() << endl;
 
     StopState stopState;
-    stopState.doAction(&context);
-    cout << context.getState()->toString() << endl;
+    stopState.doAction(context);
+    cout << context->getState()->toString() << endl;
+
+    delete context;
+    context = nullptr;
 
     system("pause");
     return 0;
